@@ -51,7 +51,11 @@ a {
 }
 
 a:hover,
-a:active {
+a:active,
+/* Специальный класс, который добавляется к активной ссылке */
+/* a.router-link-active */
+/* Переопределенный активный класс  */
+a.active {
   color: #f1a80a;
   border-color: #f1a80a;
   background-color: #1a037e;

@@ -1,4 +1,5 @@
 <template>
+  <button @click="onConfirm">Confirm</button>
   <ul>
     <user-item v-for="user in users" :key="user.id" :name="user.fullName" :role="user.role"></user-item>
   </ul>
@@ -12,6 +13,17 @@ export default {
     UserItem,
   },
   inject: ['users'],
+  methods: {
+    onConfirm() {
+      //do somtheing
+
+      // Перейти к определенному роуту
+      // this.$router.push('/teams');
+
+      // Вернуться к определенному роуту back/forward
+      this.$router.back('/teams')
+    }
+  }
 };
 </script>
 
