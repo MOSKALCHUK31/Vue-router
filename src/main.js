@@ -11,18 +11,16 @@ import NotFound from './components/nav/NotFound';
 const router = createRouter({
     history: createWebHistory(),
     routes: [
-        // Редирект. Если / , то идет в компонент /teams
-        // Меняется ЮРЛ
-        // {path: '/', redirect: '/teams'},
-        // Используем альтернативный юрл как / для того чтобы установить по дефолту 
-        // /teams
-        {path: '/teams', component: TeamsList, alias: '/'},
+        // Вставляем дочерний роут
+        // Для того чтобы его использовать в выбораном компоненте
+        // Мы должны добавить еще 1 router-view чтобы его вставлять
+        // Добавляет в родительском компоненте, на месте того, где хотим
+        // чтобы компонент был вставлен
+        {path: '/teams', component: TeamsList, children: [
+            {path: ':teamId', component: TeamMembers, props: true}
+        ]},
         {path: '/users', component: UsersList},
-        {path: '/teams/:teamId', component: TeamMembers, props: true},
-        // Редиректим на компонент, если ЮРЛ инвалдиный (такого нет)
-        // {path: '/:notFound(.*)', redirect: '/teams'}
-        //
-        {path: '/:notFound(.*)', component: NotFound}
+        {path: '/:notFound(.*)', component: NotFound},
         
     ],
     linkActiveClass: 'active'
