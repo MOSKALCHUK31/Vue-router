@@ -21,24 +21,16 @@ export default {
   },
   inject: ['users', 'teams'],
   created() {
-    // Получаем teamId из параметров роута 
-    // Выводится в адресной строке
     const teamId = this.$route.params.teamId;
-    // Ищем ту команду в массиве, где ИД команды совпадает с ИД в адресной строке
     const selectedTeam = this.teams.find(team => teamId === team.id);
-    // Получаем членов команды (обычный обьект)
     const members = selectedTeam.members;
-    // Пустой массив выбранный членов команды
     const selectedMembers = [];
 
-    // Перебираем членов команды, где пушим в наш массив тех,
-    // кто совпадает по ИД
     for (const member of members) {
       const selectedUser = this.users.find(user => user.id === member);
       selectedMembers.push(selectedUser);
     }
 
-    // Устанавлеваем значение из других массивов в нашу дату
     this.members = selectedMembers;
     this.teamName = selectedTeam.name;
   }
