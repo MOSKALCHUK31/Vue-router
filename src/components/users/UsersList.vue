@@ -23,6 +23,11 @@ export default {
       // Вернуться к определенному роуту back/forward
       this.$router.back('/teams')
     }
+  },
+  beforeRouteEnter (to, from, next) {
+    console.log('Локально в хуке компонента')
+    console.log(to, from, next)
+    next()
   }
 };
 </script>

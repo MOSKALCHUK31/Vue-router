@@ -22,7 +22,14 @@ const router = createRouter({
         {
             name: 'users',
             path: '/users', 
-            components: {default: UsersList, footer: UsersFooter}
+            components: {default: UsersList, footer: UsersFooter},
+            
+            //Вызывается в момент, когда меняется роут. [Локально к каждому компоненту]
+            beforeEnter(to, from, next) {
+                console.log('BefoureEnter [locally for this component]')
+                console.log(to, from, next)
+                next()
+            }
         },
         {path: '/:notFound(.*)', component: NotFound},
     ],
@@ -37,13 +44,12 @@ const router = createRouter({
 
 // Хук роута
 // Вызывается в тот момент, когда меняется роут.
-router.beforeEach(function(to, from, next) {
-    // if (to.name === 'team-members') 
-    //     next()
-    // else 
-    //     next({name: 'team-members', params: {teamId: 't2'} })
-    next();
-})
+// В момент когда пользователь переходит по другому роуту, мы можем отследить его поведение
+// Например, выдать модалку, если он не авторизирован. Тем самым перенаправить его на другой роут
+// router.beforeEach(function(to, from, next) {
+//     console.log(to, from, next)
+//     next()
+// })
 const app = createApp(App);
 
 app.use(router);
