@@ -1,7 +1,6 @@
 <template>
   <the-navigation></the-navigation>
   <main>
-    <!-- 2 разных роутер-вью -->
     <router-view></router-view>
   </main>
   <footer>

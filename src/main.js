@@ -13,12 +13,9 @@ import UsersFooter from './components/users/UserFooter';
 const router = createRouter({
     history: createWebHistory(),
     routes: [
-        // Использование двух слотов под роут в одном компоненте
         {
             name: 'teams', 
             path: '/teams', 
-            // Вместо component указывает components и слудем логике как и в слотах
-            // Ставим имя определенному роут-вью и во внутрь ставим компонент по имени.
             components: {default: TeamsList, footer: TeamsFooter}, 
             children: [{name: 'team-member',path: ':teamId', component: TeamMembers, props: true}]
         },
@@ -29,7 +26,20 @@ const router = createRouter({
         },
         {path: '/:notFound(.*)', component: NotFound},
     ],
-    linkActiveClass: 'active'
+    linkActiveClass: 'active',
+    // Поведение скролла. Работает только в том случае, если используеться
+    // кнопка назад в браузере.
+    // from - из какого компонента/роута мы пришли
+    // to - в какой компонент/роут мы идем
+    // savedPosition - сохраняется позиция скролла, если мы возвращаемся "Назад"
+    // с помощью кнопки в браузере
+    scrollBehavior(to, from, savedPosition) {
+        console.log(to, from, savedPosition)
+
+        if (savedPosition) return savedPosition
+        
+        return {left: 0, top: 0}
+    }
 });
 
 const app = createApp(App);
