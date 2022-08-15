@@ -11,9 +11,11 @@ export default {
   props: ['id','name', 'memberCount'],
   computed: {
     teamItemLink() {
-      // Использование Query params
-      // Параметры запроса. Линк принимает форму [htpps://url.com/teams?sort=asd]
-      return {name: 'team-member', params: {teamId: this.id}, query: {sort: 'asd'}};
+      return {
+        name: 'team-member', 
+        params: {teamId: this.id}, 
+        query: {sort: 'asd'}
+      }
     }
   }
 };
