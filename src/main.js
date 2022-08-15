@@ -11,17 +11,11 @@ import NotFound from './components/nav/NotFound';
 const router = createRouter({
     history: createWebHistory(),
     routes: [
-        // Вставляем дочерний роут
-        // Для того чтобы его использовать в выбораном компоненте
-        // Мы должны добавить еще 1 router-view чтобы его вставлять
-        // Добавляет в родительском компоненте, на месте того, где хотим
-        // чтобы компонент был вставлен
-        {path: '/teams', component: TeamsList, children: [
-            {path: ':teamId', component: TeamMembers, props: true}
+        {name: 'teams', path: '/teams', component: TeamsList, children: [
+            {name: 'team-member',path: ':teamId', component: TeamMembers, props: true}
         ]},
         {path: '/users', component: UsersList},
         {path: '/:notFound(.*)', component: NotFound},
-        
     ],
     linkActiveClass: 'active'
 });

@@ -1,5 +1,4 @@
 <template>
-  <!-- Вставленный еще один вью роутер для дочерних элементов -->
   <router-view></router-view>
   <ul>
     <teams-item

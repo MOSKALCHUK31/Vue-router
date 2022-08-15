@@ -1,9 +1,6 @@
 <template>
   <the-navigation></the-navigation>
   <main>
-    <!-- Используем специальный компонент встроенный во vue-router
-    для использования роутов -->
-    <!-- Место, где будут выводится роуты -->
     <router-view></router-view>
   </main>
 </template>
