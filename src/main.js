@@ -27,21 +27,23 @@ const router = createRouter({
         {path: '/:notFound(.*)', component: NotFound},
     ],
     linkActiveClass: 'active',
-    // Поведение скролла. Работает только в том случае, если используеться
-    // кнопка назад в браузере.
-    // from - из какого компонента/роута мы пришли
-    // to - в какой компонент/роут мы идем
-    // savedPosition - сохраняется позиция скролла, если мы возвращаемся "Назад"
-    // с помощью кнопки в браузере
-    scrollBehavior(to, from, savedPosition) {
-        console.log(to, from, savedPosition)
 
+    scrollBehavior(_, _2, savedPosition) {
         if (savedPosition) return savedPosition
         
         return {left: 0, top: 0}
     }
 });
 
+// Хук роута
+// Вызывается в тот момент, когда меняется роут.
+router.beforeEach(function(to, from, next) {
+    // if (to.name === 'team-members') 
+    //     next()
+    // else 
+    //     next({name: 'team-members', params: {teamId: 't2'} })
+    next();
+})
 const app = createApp(App);
 
 app.use(router);
